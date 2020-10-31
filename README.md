@@ -18,13 +18,14 @@ Docker image for running Transmission over a WireGuard connection, based on Alpi
 ## Usage
 * **KILLSWITCH** let's you bind Transmission to only use the assigned VPN IP. If you don't want to use it you only need to leave the environment variable empty.
 * **INTERFACE** let's you customize which WireGuard config file that wg-quick will load. Default: wg0 which loads /etc/wireguard/wg0.conf via the choosen mount volume. (See: *-v /path/to/wg-conf-dir*)
+* **TRANSMISSION_** let's you overwrite any setting that is specified in /etc/transmission-daemon/settings.json.
 
 ### docker run
 ```
 docker run --name wireguard-transmission \
 --privileged \
--e "USERNAME=transmission" \
--e "PASSWORD=transmission" \
+-e "TRANSMISSION_RPC_USERNAME=transmission" \
+-e "TRANSMISSION_RPC_PASSWORD=transmission" \
 -e "INTERFACE=wg0" \
 -e "KILLSWITCH=wg0" \
 -p 51820:51820/udp \
@@ -45,8 +46,8 @@ services:
         container_name: wireguard-transmission
         privileged: true
         environment:
-            - USERNAME=transmission
-            - PASSWORD=transmission
+            - TRANSMISSION_RPC_USERNAME=transmission
+            - TRANSMISSION_RPC_PASSWORD=transmission
             - INTERFACE=wg0
             - KILLSWITCH=wg0
         ports:
