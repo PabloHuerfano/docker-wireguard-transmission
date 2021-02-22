@@ -1,3 +1,8 @@
+# Will cease development of this image since there is a more clean way of doing this.
+
+Check out my other repo here:
+https://github.com/SebDanielsson/compose-transmission-wireguard
+
 # docker-wireguard-transmission
 Docker image for running Transmission over a WireGuard connection, based on Alpine Linux.
 
